@@ -68,7 +68,7 @@ pipeline
                 
                 to: "chetan.satpute2002@gmail.com",
                 subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}" 
-            `}
+            }
         }  
     }
 }
