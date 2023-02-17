@@ -59,6 +59,10 @@ pipeline
             steps 
             {
                 sh 'ls'    
+                withAWS(region:"ap-south-1", credentials:"aws-account-id")
+                {
+                    s3Upload(file:'server', bucket:'book-my-sport-binary-files', path:'binaries/')
+                }
             }
         }   
     }
