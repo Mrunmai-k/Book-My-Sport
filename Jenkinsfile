@@ -20,7 +20,13 @@ pipeline
             }
         }
         
-        
+        stage('Test')
+        {
+            steps
+            {
+                sh'go test'
+            ]
+        }
         stage('Deployment') 
         {
             agent {node {label"deployment"}}
