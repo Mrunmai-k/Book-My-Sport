@@ -24,7 +24,10 @@ pipeline
         {
             steps
             {
-                sh'go test'
+                withEnv(['CGO_ENABLED=0']) 
+                {
+                    sh'go test'
+                }
             }
         }
         stage('Deployment') 
