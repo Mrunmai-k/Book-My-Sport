@@ -80,10 +80,4 @@ pipeline
             }
         }
     }
-    post {
-        always {
-           
-            
-        }
-    }  
 }
