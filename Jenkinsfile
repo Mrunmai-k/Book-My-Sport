@@ -38,7 +38,7 @@ pipeline
                 unstash name:'server' 
                 unstash name:'migrations'
                 
-                sh 'ls'
+                //sh 'ls'
                 
                 sh './server migrate'
                 
@@ -54,5 +54,12 @@ pipeline
                 }
             }
         }
-    }   
+        stage('Backup binary')
+        {
+            steps 
+            {
+                sh 'ls'    
+            }
+        }   
+    }
 }
