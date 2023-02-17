@@ -80,10 +80,7 @@ pipeline
     
     post {
         always {
-            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                    // recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-                    // to: "chetan.satpute2002@gmail.com",
-                    subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+            mail bcc: '', body: ' Hi Team \\n I have forwarded the build status of $JOB_NAME  \\n Build : $BUILD_NUMBER  ${currentBuild.currentResult}.\\n \\n \\n Check the console output at ${env.BUILD_URL} to view results\\n Thanks and Regards ', cc: 'mrunmai.kudale@joshsoftware.com', from: '', replyTo: '', subject: 'Test Email From Jenkins Job', to: 'omkar.khedkar@joshsoftware.com'
         }
     }
 }
