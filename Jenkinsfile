@@ -8,17 +8,25 @@ pipeline
     
     stages 
     {
-        stage('Build Project') 
-        {
+//         stage('Build Project') 
+//         {
+//             steps 
+//             {
+//                 checkout scmGit(branches: [[name: '*/dev']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/amancooks08/Book-My-Sport.git/']])
+//                 sh 'go build -o server'
+                
+//                 stash includes: 'server', name: 'server'
+//                 stash includes: 'migrations/*', name:'migrations'
+//             }
+//         }
+        stage('Code Quality'){
             steps 
             {
-                checkout scmGit(branches: [[name: '*/dev']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/amancooks08/Book-My-Sport.git/']])
-                sh 'go build -o server'
-                
-                stash includes: 'server', name: 'server'
-                stash includes: 'migrations/*', name:'migrations'
+                withSonarQubeEnv(installationName:'sq1'){
+                    sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+                }
             }
-        }
+        } 
         
         stage('Test')
         {
